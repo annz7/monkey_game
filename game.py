@@ -105,6 +105,51 @@ for i in range(5):
     palms.append(palm1)
 balls = []
 time = -1
+run = False
+
+def top_score():
+    f = open('score.txt', 'r')
+    a = f.read()
+    f.close()
+    font = pygame.font.Font(None, 40)
+    text = font.render("лучшие результаты:", True, (0, 0, 0))
+    win.blit(text, [400, 300])
+
+    for i in range(len(a)):
+        font = pygame.font.Font(None, 40)
+        text = font.render(a[i], True, (0, 0, 0))
+        win.blit(text, [400, 300])
+
+    pygame.display.update()
+
+
+while not run:
+    win.blit(bg, (0, 0))
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = True
+        if event.type == pygame.MOUSEBUTTONDOWN:
+
+            if event.pos[0]<490 and event.pos[0]>380 and event.pos[1]<345 and event.pos[1]>285:
+                run = True
+
+    pygame.draw.rect(win, (0, 0, 200), pygame.Rect(200, 100, w - 400, h - 200))
+    pygame.draw.rect(win, (0, 200, 200), pygame.Rect(210, 110, w - 420, h - 220))
+
+    pygame.draw.rect(win, (93, 93, 93), pygame.Rect(380, 285, 110, 60))
+    pygame.draw.rect(win, (99, 99, 99), pygame.Rect(390, 295, 90, 40))
+
+    font = pygame.font.Font(None, 80)
+    text = font.render("MonkeY", True, (0, 0, 0))
+    win.blit(text, [345, 150])
+
+    font = pygame.font.Font(None, 40)
+    text = font.render("старт", True, (0, 0, 0))
+    win.blit(text, [400, 300])
+    pygame.display.update()
+
+
+
 while run:
     if life == 0:
         run = False
